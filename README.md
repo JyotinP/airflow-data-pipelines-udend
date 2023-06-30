@@ -30,7 +30,7 @@ There are two datasets residing in S3:
 - AWS Redshift
 
 ## DAG Graph View
-![Graph View DAG](graphview_dag.png)
+![example-dag](https://github.com/JyotinP/airflow-data-pipelines-udend/assets/51038502/f194361d-2523-4f52-86d3-9f20f7821030)
 
 ## Setup
 - In your Airflow, create a new AWS `Connection` 
