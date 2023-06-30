@@ -32,32 +32,17 @@ There are two datasets residing in S3:
 ## DAG Graph View
 ![example-dag](https://github.com/JyotinP/airflow-data-pipelines-udend/assets/51038502/f194361d-2523-4f52-86d3-9f20f7821030)
 
-## Setup
-- In your Airflow, create a new AWS `Connection` 
-  - **Conn Id:** Enter aws_credentials.
-  - **Conn Type:** Enter Amazon Web Services.
-  - **Login:** Enter your Access key ID from the IAM User credentials you downloaded earlier.
-  - **Password:** Enter your Secret access key from the IAM User credentials you downloaded earlier.
-- Create a new Redshift `Connection`
-  - **Conn Id:** Enter redshift.
-  - **Conn Type:** Enter Postgres.
-  - **Host:** Enter the endpoint of your Redshift cluster, excluding the port at the end.
-  - **Schema:** Enter dev. This is the Redshift database you want to connect to.
-  - **Login:** Enter awsuser.
-  - **Password:** Enter the password you created when launching your Redshift cluster.
-  - **Port:** Enter 5439.
-- Add the DAG to your Airflow
-
 ## Files
-- `dags/udac_example_dag.py`: Contains the main DAG.
+- `dags/main_dag.py`: Contains the main DAG
   - The DAG does not have dependencies on past runs
   - On failure, the task are retried 3 times
   - Retries happen every 5 minutes
   - Catchup is turned off
   - Do not email on retry
-- `plugins/operators/create_table_redshift.py`: Custom Operator for creating tables on Redshift.
-- `plugins/operators/stage_s3_to_redshift.py`: Custom Operator for copying data from S3 to Staging tables on Redshift.
-- `plugins/operators/load_dim_from_stage.py`: Custom Operator for loading Dimension tables from Staging tables.
-- `plugins/operators/load_fact_from_stage.py`: Custom Operator for loading Fact table from Staging tables.
-- `plugins/operators/data_quality_check.py`: Custom Operator for data quality checks.
+- `plugins/helpers/sql_queries.py`: Contains SQL queries
+- `plugins/operators/create_table_redshift.py`: Custom Operator for creating tables on Redshift
+- `plugins/operators/stage_s3_to_redshift.py`: Custom Operator for copying data from S3 to Staging tables on Redshift
+- `plugins/operators/load_dim_from_stage.py`: Custom Operator for loading Dimension tables from Staging tables
+- `plugins/operators/load_fact_from_stage.py`: Custom Operator for loading Fact table from Staging tables
+- `plugins/operators/data_quality_check.py`: Custom Operator for data quality checks
 
